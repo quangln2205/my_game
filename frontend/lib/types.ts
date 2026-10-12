@@ -1,0 +1,3 @@
+export type Evidence = { id: string; title: string; excerpt: string; source_name: string; source_url: string; source_type: string; claim_key: string; stance: 'positive' | 'negative' | 'neutral'; reliability_score: number; metadata: { published_at: string; market?: string; game_version?: string; audience_scope?: string; metric_definition?: string } };
+export type WarningItem = { code: string; message: string; evidence_ids: string[] };
+export type ResearchResult = { session_id: string; question: string; generated_at: string; evidence: Evidence[]; brief: { conclusion: string; confidence: 'high' | 'medium' | 'low' | 'insufficient'; review_status: string; missing_data: string[]; warnings: WarningItem[]; next_steps: string[] } };
