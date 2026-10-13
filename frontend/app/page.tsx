@@ -5,7 +5,9 @@ import { BriefPanel } from '../components/BriefPanel';
 import { EvidenceDrawer } from '../components/EvidenceDrawer';
 import type { ResearchResult } from '../lib/types';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://localhost:8000';
+// On Vercel, the top-level /api rewrite reaches the FastAPI service on the same origin.
+// Local development keeps the existing two-process workflow unless overridden in .env.local.
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? (process.env.NODE_ENV === 'production' ? '' : 'http://localhost:8000');
 
 export default function Home() {
   const [question, setQuestion] = useState('Người chơi mới có gặp trở ngại ở tutorial không?');
